@@ -51,6 +51,8 @@ class Solution {
     public int minDistance(String a, String b) {
         int n = a.length();
         int m = b.length();
+        a = " " + a;
+        b = " " + b;
         int[][] f = new int[n + 1][m + 1];
         for (int i = 0; i <= n; i++) {
             f[i][0] = i;
@@ -65,8 +67,8 @@ class Solution {
                 int down = f[i][j - 1] + 1;
                 int leftdown = f[i - 1][j - 1];
 
-                // 比较的是i-1和j-1
-                if (a.charAt(i - 1) != b.charAt(j - 1)) {
+                // 比较的是i-1和j-1；如果前置一个空格,可以直接比较i；j
+                if (a.charAt(i) != b.charAt(j)) {
                     leftdown = f[i - 1][j - 1] + 1;
                 }
                 f[i][j] = Math.min(left, Math.min(down, leftdown));
