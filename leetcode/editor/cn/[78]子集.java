@@ -39,21 +39,22 @@ class Solution {
     List<Integer> path = new ArrayList<>();
 
     public List<List<Integer>> subsets(int[] nums) {
+        if (nums.length == 0) return ans;
         dfs(nums, 0);
         return ans;
     }
 
-    public void dfs(int[] nums, int u) {
-        if (nums.length == u) {
+    public void dfs(int[] nums, int x) {
+        if (nums.length == x) {
             ans.add(new ArrayList<>(path));
             return;
         }
 
-        path.add(nums[u]);
-        dfs(nums, u + 1);
+        path.add(nums[x]);
+        dfs(nums, x + 1);
         path.remove(path.size() - 1);
 
-        dfs(nums, u + 1);
+        dfs(nums, x + 1);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
