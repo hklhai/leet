@@ -33,7 +33,6 @@
 // strs[i] 仅包含小写字母 
 // 
 //
-// Related Topics 数组 哈希表 字符串 排序 👍 1861 👎 0
 
 
 import java.util.ArrayList;
@@ -43,23 +42,18 @@ import java.util.HashMap;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, List<String>> dict = new HashMap<>();
         List<List<String>> ans = new ArrayList<>();
-        for (String s : strs) {
-            char[] arrs = s.toCharArray();
-            Arrays.sort(arrs);
+        Map<String, List<String>> dict = new HashMap<>();
 
-            String key = new String(arrs);
-            if (!dict.containsKey(key)) {
-                dict.put(key, new ArrayList<>());
-            }
+        for (String s : strs) {
+            char[] c = s.toCharArray();
+            Arrays.sort(c);
+            String key = new String(c);
+            if (!dict.containsKey(key)) dict.put(key, new ArrayList<>());
             dict.get(key).add(s);
         }
 
-        for (List<String> l : dict.values()) {
-            ans.add(l);
-        }
-
+        for (List<String> list : dict.values()) ans.add(list);
         return ans;
     }
 }
