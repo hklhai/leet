@@ -31,29 +31,32 @@
 // 1 <= strs.length <= 10⁴ 
 // 0 <= strs[i].length <= 100 
 // strs[i] 仅包含小写字母 
-// 
 //
 
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> ans = new ArrayList<>();
-        Map<String, List<String>> dict = new HashMap<>();
+        if (strs.length == 0) return ans;
 
+        Map<String, List<String>> dict = new HashMap<>();
         for (String s : strs) {
             char[] c = s.toCharArray();
             Arrays.sort(c);
             String key = new String(c);
-            if (!dict.containsKey(key)) dict.put(key, new ArrayList<>());
+
+            if (!dict.containsKey(key)) {
+                dict.put(key, new ArrayList<>());
+            }
             dict.get(key).add(s);
         }
 
-        for (List<String> list : dict.values()) ans.add(list);
+        for (List<String> list : dict.values()) {
+            ans.add(list);
+        }
         return ans;
     }
 }

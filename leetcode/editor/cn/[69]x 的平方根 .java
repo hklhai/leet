@@ -29,17 +29,19 @@
 // 0 <= x <= 2³¹ - 1 
 // 
 //
-// Related Topics 数学 二分查找 👍 1529 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int mySqrt(int x) {
-        if (x == 0 || x == 1) return x;
-        // mid * mid <= x
+        if (x < 2) {
+            return x;
+        }
+
         int l = 0, r = x;
+
         while (l < r) {
-            int mid = (l + r + 1) / 2;
+            int mid = (l + r + 1) >> 1;
             if (mid <= x / mid) {
                 l = mid;
             } else {

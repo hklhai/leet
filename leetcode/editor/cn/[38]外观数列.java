@@ -62,26 +62,24 @@
 // 1 <= n <= 30 
 // 
 //
-// Related Topics 字符串 👍 1078 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String countAndSay(int n) {
-        StringBuilder ans = new StringBuilder("1");
+        StringBuilder res = new StringBuilder("1");
         for (int x = 1; x < n; x++) {
             StringBuilder s = new StringBuilder();
-            for (int i = 0; i < ans.length();) {
+            for (int i = 0; i < res.length();) {
                 int j = i;
-                while (j < ans.length() && ans.charAt(i) == ans.charAt(j)) {
-                    j++;
-                }
-                s.append(j - i).append(ans.charAt(i));
+                while (j < res.length() && res.charAt(i) == res.charAt(j)) j++;
+                s.append(j - i);
+                s.append(res.charAt(i));
                 i = j;
             }
-            ans = s;
+            res = s;
         }
-        return ans.toString();
+        return res.toString();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
