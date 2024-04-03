@@ -60,22 +60,21 @@ class Solution {
         ListNode p = d;
         int c = 0;
         while (l1 != null || l2 != null) {
-            int sum = c;
             if (l1 != null) {
-                sum += l1.val;
+                c += l1.val;
                 l1 = l1.next;
             }
             if (l2 != null) {
-                sum += l2.val;
+                c += l2.val;
                 l2 = l2.next;
             }
-            c = sum / 10;
-            p.next = new ListNode(sum % 10);
+            p.next = new ListNode(c % 10);
             p = p.next;
+            c = c / 10;
         }
 
         if (c > 0) {
-            p.next = new ListNode(c);
+            p.next = new ListNode(c % 10);
         }
 
         return d.next;
