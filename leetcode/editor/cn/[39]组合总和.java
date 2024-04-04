@@ -63,11 +63,12 @@ class Solution {
             return;
         }
 
-        for (int i = 0; sum + candidates[u] * i <= target; i++) {
-            dfs(candidates, sum + candidates[u] * i, u + 1, target, path);
+        for (int i = 0; i * candidates[u] <= target - sum; i++) {
+            // 首次加入0个
+            dfs(candidates, sum + candidates[u] * i, u + 1,target,path );
             path.add(candidates[u]);
         }
-        for (int i = 0; sum + candidates[u] * i <= target; i++) {
+        for (int i = 0; i * candidates[u] <= target - sum; i++) {
             path.remove(path.size()-1);
         }
     }
