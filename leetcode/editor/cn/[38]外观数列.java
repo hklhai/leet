@@ -66,20 +66,9 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    // 1211
     public String countAndSay(int n) {
-        StringBuilder res = new StringBuilder("1");
-        for (int x = 1; x < n; x++) {
-            StringBuilder s = new StringBuilder();
-            for (int i = 0; i < res.length();) {
-                int j = i;
-                while (j < res.length() && res.charAt(i) == res.charAt(j)) j++;
-                s.append(j - i);
-                s.append(res.charAt(i));
-                i = j;
-            }
-            res = s;
-        }
-        return res.toString();
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
