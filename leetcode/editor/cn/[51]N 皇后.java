@@ -37,16 +37,19 @@
 //
 
 
+import java.util.ArrayList;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    boolean[] col, dg, udg;
     List<List<String>> ans = new ArrayList<>();
+    boolean[] col, a, b;
     List<String> path = new ArrayList<>();
 
     public List<List<String>> solveNQueens(int n) {
         col = new boolean[n];
-        dg = new boolean[n * 2];
-        udg = new boolean[n * 2];
+        a = new boolean[2 * n];
+        b = new boolean[2 * n];
+
         for (int i = 0; i < n; i++) {
             path.add(".".repeat(n));
         }
@@ -54,20 +57,21 @@ class Solution {
         return ans;
     }
 
-    private void dfs(int u, int n) {
+    public void dfs(int u, int n) {
         if (u == n) {
             ans.add(new ArrayList<>(path));
             return;
         }
         for (int i = 0; i < n; i++) {
-            if (!col[i] && !dg[u - i + n] && !udg[u + i]) {
-                col[i] = dg[u - i + n] = udg[u + i] = true;
-                path.set(u, path.get(u).substring(0, i) + 'Q' + path.get(u).substring(i + 1));
+            if (!col[i] && !a[u + i] && !b[u - i + n]) {
+                col[i] = a[u + i] = b[u - i + n] = true;
+                path.set(u, path.get(u).substring(0, i) + "Q" + path.get(u).substring(i + 1));
                 dfs(u + 1, n);
-                col[i] = dg[u - i + n] = udg[u + i] = false;
-                path.set(u, path.get(u).substring(0, i) + '.' + path.get(u).substring(i + 1));
+                col[i] = a[u + i] = b[u - i + n] = false;
+                path.set(u, path.get(u).substring(0, i) + "." + path.get(u).substring(i + 1));
             }
         }
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
