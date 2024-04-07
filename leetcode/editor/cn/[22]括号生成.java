@@ -39,10 +39,11 @@ class Solution {
     }
 
     public void dfs(int n, int l, int r, String path) {
-        if (l == n && r == n) {
+        if (n == l && l == r) {
             ans.add(path);
             return;
         }
+
         if (l < n) {
             dfs(n, l + 1, r, path + "(");
         }
@@ -51,5 +52,6 @@ class Solution {
             dfs(n, l, r + 1, path + ")");
         }
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
