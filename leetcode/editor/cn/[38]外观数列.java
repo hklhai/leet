@@ -68,7 +68,20 @@
 class Solution {
     // 1211
     public String countAndSay(int n) {
+        StringBuilder ans = new StringBuilder("1");
+        if (n == 1) return ans.toString();
 
+        for (int i = 1; i < n; i++) {
+            StringBuilder t = new StringBuilder("");
+            for (int j = 0; j < ans.length();) {
+                int k = j;
+                while (k < ans.length() && ans.charAt(j) == ans.charAt(k)) k++;
+                t.append(k - j).append(ans.charAt(j));
+                j = k;
+            }
+            ans = t;
+        }
+        return ans.toString();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
