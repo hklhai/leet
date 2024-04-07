@@ -53,18 +53,17 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String reverseWords(String s) {
-        if (s == null || s.length() == 0) return s;
+        StringBuilder ans = new StringBuilder();
+        if (s == null || s.length() == 0) return ans.toString();
 
         String[] words = s.trim().split("\\s+");
-
-        StringBuilder r = new StringBuilder();
-        for(int i = words.length-1; i >=0; i--){
-            r.append(words[i]);
+        for (int i = words.length - 1; i >= 0; i--) {
+            ans.append(words[i]);
             if(i >0){
-                r.append(" ");
+                ans.append(" ");
             }
         }
-        return r.toString();
+        return ans.toString();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -47,8 +47,8 @@ import java.util.HashMap;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
-        int res = 0;
         Map<Integer, Integer> m = new HashMap<>();
+        int res = 0;
 
         for (int a : A) {
             for (int b : B) {
