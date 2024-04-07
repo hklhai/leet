@@ -35,6 +35,7 @@
 // 1 <= n <= 9 
 // 
 //
+// Related Topics 数组 回溯
 
 
 import java.util.ArrayList;
@@ -42,17 +43,18 @@ import java.util.ArrayList;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     List<List<String>> ans = new ArrayList<>();
-    boolean[] col, a, b;
     List<String> path = new ArrayList<>();
+    boolean[] col, a, b;
 
     public List<List<String>> solveNQueens(int n) {
         col = new boolean[n];
-        a = new boolean[2 * n];
-        b = new boolean[2 * n];
+        a = new boolean[n * 2];
+        b = new boolean[n * 2];
 
         for (int i = 0; i < n; i++) {
             path.add(".".repeat(n));
         }
+
         dfs(0, n);
         return ans;
     }
@@ -62,6 +64,7 @@ class Solution {
             ans.add(new ArrayList<>(path));
             return;
         }
+
         for (int i = 0; i < n; i++) {
             if (!col[i] && !a[u + i] && !b[u - i + n]) {
                 col[i] = a[u + i] = b[u - i + n] = true;
@@ -72,6 +75,5 @@ class Solution {
             }
         }
     }
-
 }
 //leetcode submit region end(Prohibit modification and deletion)

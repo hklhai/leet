@@ -1,6 +1,10 @@
 //n 皇后问题 研究的是如何将 n 个皇后放置在 n × n 的棋盘上，并且使皇后彼此之间不能相互攻击。 
 //
-// 给你一个整数 n ，返回 n 皇后问题 不同的解决方案的数量。
+// 给你一个整数 n ，返回 n 皇后问题 不同的解决方案的数量。 
+//
+// 
+//
+// 
 // 
 // 示例 1： 
 // 
@@ -27,25 +31,25 @@
 // 1 <= n <= 9 
 // 
 //
+// Related Topics 回溯
 
 
 import java.util.ArrayList;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    List<List<String>> ans = new ArrayList<>();
     List<String> path = new ArrayList<>();
+    List<List<String>> ans = new ArrayList<>();
     boolean[] col, a, b;
 
     public int totalNQueens(int n) {
         if (n < 2) return 1;
-
         col = new boolean[n];
-        a = new boolean[2 * n];
-        b = new boolean[2 * n];
-        for (int i = 0; i < n; i++) {
-            path.add(".".repeat(n));
-        }
+        a = new boolean[n * 2];
+        b = new boolean[n * 2];
+
+        for (int i = 0; i < n; i++) path.add(".".repeat(n));
+
         dfs(0, n);
         return ans.size();
     }
@@ -55,11 +59,12 @@ class Solution {
             ans.add(new ArrayList<>(path));
             return;
         }
+
         for (int i = 0; i < n; i++) {
             if (!col[i] && !a[u + i] && !b[u - i + n]) {
                 col[i] = a[u + i] = b[u - i + n] = true;
                 path.set(u, path.get(u).substring(0, i) + "Q" + path.get(u).substring(i + 1));
-                dfs(u + 1, n);
+                dfs(u+1,n);
                 col[i] = a[u + i] = b[u - i + n] = false;
                 path.set(u, path.get(u).substring(0, i) + "." + path.get(u).substring(i + 1));
             }
