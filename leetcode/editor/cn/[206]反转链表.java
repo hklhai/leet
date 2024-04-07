@@ -1,11 +1,4 @@
 //给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
-//
-// 
-// 
-// 
-// 
-// 
-//
 // 示例 1： 
 // 
 // 
@@ -40,7 +33,6 @@
 //
 // 进阶：链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？ 
 //
-// Related Topics 递归 链表 👍 3541 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -57,7 +49,8 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        if(head == null) return head;
+        if (head == null) return null;
+
         ListNode d = new ListNode(-1);
         d.next = head;
         ListNode a = d;
@@ -69,6 +62,7 @@ class Solution {
             a = b;
             b = c;
         }
+
         head.next = null;
         return a;
     }

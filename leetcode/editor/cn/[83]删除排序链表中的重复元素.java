@@ -27,7 +27,6 @@
 // 题目数据保证链表已经按升序 排列 
 // 
 //
-// Related Topics 链表 👍 1115 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -45,7 +44,6 @@
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         if (head == null) return head;
-
         ListNode p = head;
 
         while (p.next != null) {
@@ -55,7 +53,6 @@ class Solution {
                 p = p.next;
             }
         }
-
         return head;
     }
 }
