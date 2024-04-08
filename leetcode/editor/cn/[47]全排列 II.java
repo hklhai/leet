@@ -28,19 +28,21 @@ import java.util.Arrays;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     List<List<Integer>> ans = new ArrayList<>();
     List<Integer> path = new ArrayList<>();
     boolean[] s;
 
     public List<List<Integer>> permuteUnique(int[] nums) {
         if (nums == null || nums.length == 0) return ans;
+
         s = new boolean[nums.length];
         Arrays.sort(nums);
-        dfs(nums, 0, path);
+        dfs(nums, 0);
         return ans;
     }
 
-    public void dfs(int[] nums, int u, List<Integer> path) {
+    public void dfs(int[] nums, int u) {
         if (nums.length == u) {
             ans.add(new ArrayList<>(path));
             return;
@@ -48,11 +50,11 @@ class Solution {
 
         for (int i = 0; i < nums.length; i++) {
             if (!s[i]) {
-                if (i > 0 && nums[i] == nums[i - 1] && !s[i - 1]) continue;
+                // !s[i-1] 关键判断条件
+                if (i > 0 && nums[i] == nums[i - 1] && !s[i-1]) continue;
                 s[i] = true;
                 path.add(nums[i]);
-                dfs(nums, u + 1, path);
-
+                dfs(nums, u + 1);
                 s[i] = false;
                 path.remove(path.size() - 1);
             }

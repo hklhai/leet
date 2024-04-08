@@ -44,27 +44,29 @@ class Solution {
     boolean[] s;
 
     public List<List<Integer>> permute(int[] nums) {
-        if (nums.length == 0) return ans;
+        if (nums == null || nums.length == 0) return ans;
+
         s = new boolean[nums.length];
-        dfs(nums, 0, path);
+        dfs(nums, 0);
         return ans;
     }
 
-    public void dfs(int[] nums, int u, List<Integer> path) {
-        if (u == nums.length) {
+    public void dfs(int[] nums, int u) {
+        if (nums.length == u) {
             ans.add(new ArrayList<>(path));
             return;
         }
 
         for (int i = 0; i < nums.length; i++) {
             if (!s[i]) {
-                path.add(nums[i]);
                 s[i] = true;
-                dfs(nums, u + 1, path);
-                s[i] = false;
+                path.add(nums[i]);
+                dfs(nums, u + 1);
                 path.remove(path.size() - 1);
+                s[i] = false;
             }
         }
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

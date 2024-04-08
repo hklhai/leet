@@ -24,27 +24,29 @@
 // 1 <= n <= 8 
 // 
 //
-// Related Topics 字符串 动态规划 回溯 👍 3543 👎 0
+// Related Topics 字符串 动态规划 回溯
 
 
 import java.util.ArrayList;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     List<String> ans = new ArrayList<>();
 
     public List<String> generateParenthesis(int n) {
+        if (n == 0) return ans;
         dfs(n, 0, 0, "");
         return ans;
     }
 
     public void dfs(int n, int l, int r, String path) {
-        if (n == l && l == r) {
+        if (l == n && l == r) {
             ans.add(path);
             return;
         }
 
-        if (l < n) {
+        if (n > l) {
             dfs(n, l + 1, r, path + "(");
         }
 
@@ -52,6 +54,5 @@ class Solution {
             dfs(n, l, r + 1, path + ")");
         }
     }
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
