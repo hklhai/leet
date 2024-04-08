@@ -32,7 +32,7 @@
 //
 // 进阶： 你可以使用一趟扫描完成反转吗？ 
 //
-// Related Topics 链表 👍 1753 👎 0
+// Related Topics 链表
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -49,38 +49,41 @@
  */
 class Solution {
     public ListNode reverseBetween(ListNode head, int l, int r) {
-        if (head == null || l == r) return head;
+        if (head == null) return head;
+        if (l == r) return head;
+
         ListNode d = new ListNode(-1);
         d.next = head;
-
         ListNode p = d;
         ListNode q = d;
+
         while (l - 1 > 0) {
             p = p.next;
             l--;
         }
+
         while (r > 0) {
             q = q.next;
             r--;
         }
-        // x  m  n  y
+
         ListNode x = p;
         ListNode m = p.next;
         ListNode n = q;
         ListNode y = q.next;
-
-        ListNode a = x;
-        ListNode b = x.next;
-
+        // x    m n    y
+        ListNode a = m;
+        ListNode b = a.next;
         while (b != y) {
             ListNode c = b.next;
             b.next = a;
             a = b;
             b = c;
         }
+
+        // x    m n    y
         x.next = a;
         m.next = y;
-
         return d.next;
     }
 }
