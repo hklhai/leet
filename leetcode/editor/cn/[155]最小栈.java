@@ -43,6 +43,8 @@
 // push, pop, top, and getMin最多被调用 3 * 10⁴ 次 
 // 
 //
+// Related Topics 栈 设计
+
 
 import java.util.Stack;
 
@@ -59,12 +61,16 @@ class MinStack {
 
     public void push(int val) {
         stack.push(val);
-        if (minStack.isEmpty() || minStack.peek() >= val) minStack.push(val);
+        if (minStack.isEmpty() || val <= minStack.peek()) {
+            minStack.push(val);
+        }
     }
 
     public void pop() {
-        if (stack.peek().equals(minStack.peek())) minStack.pop();
-        stack.pop();
+        int t = stack.pop();
+        if (t <= minStack.peek()) {
+            minStack.pop();
+        }
     }
 
     public int top() {
