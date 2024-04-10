@@ -34,14 +34,10 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int mySqrt(int x) {
-        if (x < 2) {
-            return x;
-        }
-
+        if (x < 2) return x;
         int l = 0, r = x;
-
         while (l < r) {
-            int mid = (l + r + 1) >> 1;
+            int mid = (int) (l + r + 1L >> 1);
             if (mid <= x / mid) {
                 l = mid;
             } else {
