@@ -41,6 +41,7 @@
 // 1 <= target <= 40 
 // 
 //
+// Related Topics 数组 回溯
 
 
 import java.util.ArrayList;
@@ -50,26 +51,25 @@ class Solution {
     List<List<Integer>> ans = new ArrayList<>();
     List<Integer> path = new ArrayList<>();
 
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        dfs(candidates, 0, 0, target, path);
+    public List<List<Integer>> combinationSum(int[] c, int target) {
+        if (c == null || c.length == 0) return ans;
+        dfs(c, 0, target);
         return ans;
     }
 
-    public void dfs(int[] candidates, int sum, int u, int target, List<Integer> path) {
-        if (u == candidates.length) {
-            if (sum == target) {
-                ans.add(new ArrayList<>(path));
-            }
+    public void dfs(int[] c, int u, int target) {
+        if (u == c.length) {
+            if (target == 0) ans.add(new ArrayList<>(path));
             return;
         }
 
-        for (int i = 0; i * candidates[u] <= target - sum; i++) {
-            // 首次加入0个
-            dfs(candidates, sum + candidates[u] * i, u + 1,target,path );
-            path.add(candidates[u]);
+        for (int i = 0; target - i * c[u] >= 0; i++) {
+            dfs(c, u + 1, target - i * c[u]);
+            path.add(c[u]);
         }
-        for (int i = 0; i * candidates[u] <= target - sum; i++) {
-            path.remove(path.size()-1);
+
+        for (int i = 0; target - i * c[u] >= 0; i++) {
+            path.remove(path.size() - 1);
         }
     }
 }
