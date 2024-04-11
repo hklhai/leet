@@ -28,7 +28,6 @@ import java.util.Arrays;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
     List<List<Integer>> ans = new ArrayList<>();
     List<Integer> path = new ArrayList<>();
     boolean[] s;
@@ -43,20 +42,20 @@ class Solution {
     }
 
     public void dfs(int[] nums, int u) {
-        if (nums.length == u) {
+        if (u == nums.length) {
             ans.add(new ArrayList<>(path));
             return;
         }
 
         for (int i = 0; i < nums.length; i++) {
             if (!s[i]) {
-                // !s[i-1] 关键判断条件
-                if (i > 0 && nums[i] == nums[i - 1] && !s[i-1]) continue;
+                if(i >0 && nums[i] == nums[i-1] && !s[i-1]) continue;
+
                 s[i] = true;
                 path.add(nums[i]);
-                dfs(nums, u + 1);
+                dfs(nums,u+1);
                 s[i] = false;
-                path.remove(path.size() - 1);
+                path.remove(path.size()-1);
             }
         }
     }

@@ -38,18 +38,17 @@ import java.util.ArrayList;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    List<String> path = new ArrayList<>();
     List<List<String>> ans = new ArrayList<>();
+    List<String> path = new ArrayList<>();
     boolean[] col, a, b;
 
     public int totalNQueens(int n) {
-        if (n < 2) return 1;
         col = new boolean[n];
-        a = new boolean[n * 2];
-        b = new boolean[n * 2];
-
-        for (int i = 0; i < n; i++) path.add(".".repeat(n));
-
+        a = new boolean[2 * n];
+        b = new boolean[2 * n];
+        for (int i = 0; i < n; i++) {
+            path.add(".".repeat(n));
+        }
         dfs(0, n);
         return ans.size();
     }
@@ -64,11 +63,13 @@ class Solution {
             if (!col[i] && !a[u + i] && !b[u - i + n]) {
                 col[i] = a[u + i] = b[u - i + n] = true;
                 path.set(u, path.get(u).substring(0, i) + "Q" + path.get(u).substring(i + 1));
-                dfs(u+1,n);
+                dfs(u + 1, n);
                 col[i] = a[u + i] = b[u - i + n] = false;
                 path.set(u, path.get(u).substring(0, i) + "." + path.get(u).substring(i + 1));
             }
         }
     }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

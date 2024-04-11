@@ -43,6 +43,8 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 
+import java.util.List;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -55,20 +57,21 @@
  */
 class Solution {
     public void reorderList(ListNode head) {
-        int n = 0;
-        ListNode p = head;
-        while (p != null) {
-            n++;
-            p = p.next;
+        if (head == null || head.next == null) return;
+
+        ListNode f = head;
+        ListNode s = head;
+        while (f.next != null && f.next.next != null) {
+            f = f.next.next;
+            s = s.next;
         }
-        if (n <= 2) return;
 
-        ListNode later = head;
-        for (int i = 0; i + 1 < (n + 1) / 2; i++)
-            later = later.next;
-        ListNode a = later;
-        ListNode b = later.next;
+        // 反转从中间到末尾的链表部分
+        ListNode a = s.next; // 第一个需要反转的节点
+        s.next = null; // 断开前半部分和后半部分的连接
 
+        ListNode b = a.next;
+        a.next = null; // 第一个节点反转后将成为最后一个节点
         while (b != null) {
             ListNode c = b.next;
             b.next = a;
@@ -76,13 +79,15 @@ class Solution {
             b = c;
         }
 
-        later.next = null;
-        while (head != null && head != a) {
-            b = a.next;
-            a.next = head.next;
-            head.next = a;
-            head = head.next.next;
-            a = b;
+
+        // head   a
+        ListNode first = head;
+        ListNode second = a;
+        while (first != null && second != null) {
+            ListNode t = first.next;
+            first.next = second;
+            first = second;
+            second = t;
         }
     }
 }

@@ -59,14 +59,14 @@ class Solution {
 
         for (int i = 0; i < nums.length; i++) {
             if (!s[i]) {
-                s[i] = true;
                 path.add(nums[i]);
+                s[i] = true;
                 dfs(nums, u + 1);
-                path.remove(path.size() - 1);
                 s[i] = false;
+                path.remove(path.size() - 1);
             }
         }
-    }
 
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -28,31 +28,33 @@
 // nums 中的所有元素 互不相同 
 // 
 //
+// Related Topics 位运算 数组 回溯
+
 
 import java.util.ArrayList;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-    List<List<Integer>> res = new ArrayList<>();
+    List<List<Integer>> ans = new ArrayList<>();
     List<Integer> path = new ArrayList<>();
 
     public List<List<Integer>> subsets(int[] nums) {
+        if (nums == null || nums.length == 0) return ans;
         dfs(nums, 0);
-        return res;
+        return ans;
     }
 
-    public void dfs(int[] nums, int x) {
-        if (x == nums.length) {
-            res.add(new ArrayList<>(path));
+    public void dfs(int[] nums, int u) {
+        if(nums.length== u){
+            ans.add(new ArrayList<>(path));
             return;
         }
-        path.add(nums[x]);
-        dfs(nums, x + 1);
-        path.remove(path.size() - 1);
 
-        dfs(nums, x + 1);
+        dfs(nums, u + 1);
+
+        path.add(nums[u]);
+        dfs(nums, u + 1);
+        path.remove(path.size()-1);
     }
-
 }
 //leetcode submit region end(Prohibit modification and deletion)

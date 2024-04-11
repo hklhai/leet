@@ -31,6 +31,7 @@
 // -10 <= nums[i] <= 10 
 // 
 //
+// Related Topics 位运算 数组 回溯
 
 
 import java.util.ArrayList;
@@ -42,22 +43,29 @@ class Solution {
     List<Integer> path = new ArrayList<>();
 
     public List<List<Integer>> subsetsWithDup(int[] nums) {
+        if (nums == null || nums.length == 0) return ans;
         Arrays.sort(nums);
-        dfs(nums, 0, path);
+        dfs(nums, 0);
         return ans;
     }
 
-    public void dfs(int[] nums, int u, List<Integer> path) {
-        // 不选
-        ans.add(new ArrayList<>(path));
+    public void dfs(int[] nums, int u) {
+        if (nums.length == u) {
+            ans.add(new ArrayList<>(path));
+            return;
+        }
 
-        // 选
-        for (int i = u; i < nums.length; i++) {
-            path.add(nums[i]);
-            dfs(nums, i + 1, path);
+        int k = u + 1;
+        while (k < nums.length && nums[k] == nums[u]) k++;
+
+        int cnt = k - u;
+        for (int i = 0; i <= cnt; i++) {
+            dfs(nums, k);
+            path.add(nums[u]);
+        }
+
+        for (int i = 0; i <= cnt; i++) {
             path.remove(path.size() - 1);
-
-            while (i + 1 < nums.length && nums[i] == nums[i + 1]) i++;
         }
     }
 }

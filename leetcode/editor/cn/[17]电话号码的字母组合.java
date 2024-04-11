@@ -38,27 +38,32 @@
 //
 // Related Topics 哈希表 字符串 回溯
 
+import java.util.ArrayList;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     List<String> ans = new ArrayList<>();
-    String[] strs = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    String[] str = new String[]{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 
-    public List<String> letterCombinations(String digits) {
-        if (digits.isEmpty()) return ans;
-        dfs(digits, 0, "");
+    public List<String> letterCombinations(String d) {
+        if (d == null || d.length() == 0) return ans;
+        dfs(d, 0, "");
         return ans;
     }
 
-    public void dfs(String digits, int u, String path) {
-        if (u == digits.length()) {
+    public void dfs(String d, int u, String path) {
+        if (d.length() == u) {
             ans.add(path);
             return;
         }
 
-        int idx = digits.charAt(u) - '0';
-        for (char c : strs[idx].toCharArray()) {
-            dfs(digits, u + 1, path + c);
+        int idx = d.charAt(u) - '0';
+
+        for (char c : str[idx].toCharArray()) {
+            dfs(d, u + 1, path + c);
         }
     }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

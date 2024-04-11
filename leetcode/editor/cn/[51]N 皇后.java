@@ -48,8 +48,8 @@ class Solution {
 
     public List<List<String>> solveNQueens(int n) {
         col = new boolean[n];
-        a = new boolean[n * 2];
-        b = new boolean[n * 2];
+        a = new boolean[2 * n];
+        b = new boolean[2 * n];
 
         for (int i = 0; i < n; i++) {
             path.add(".".repeat(n));
@@ -68,10 +68,10 @@ class Solution {
         for (int i = 0; i < n; i++) {
             if (!col[i] && !a[u + i] && !b[u - i + n]) {
                 col[i] = a[u + i] = b[u - i + n] = true;
-                path.set(u, path.get(u).substring(0, i) + "Q" + path.get(u).substring(i + 1));
+                path.set(u, path.get(u).substring(0,i) + "Q"+ path.get(u).substring(i+1));
                 dfs(u + 1, n);
                 col[i] = a[u + i] = b[u - i + n] = false;
-                path.set(u, path.get(u).substring(0, i) + "." + path.get(u).substring(i + 1));
+                path.set(u, path.get(u).substring(0,i) + "."+ path.get(u).substring(i+1));
             }
         }
     }

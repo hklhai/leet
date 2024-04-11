@@ -35,6 +35,7 @@
 class Solution {
     public int mySqrt(int x) {
         if (x < 2) return x;
+
         int l = 0, r = x;
         while (l < r) {
             int mid = (int) (l + r + 1L >> 1);
