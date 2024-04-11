@@ -29,7 +29,7 @@
 //
 // 进阶：你可以运用递归和迭代两种方法解决这个问题吗？ 
 //
-// Related Topics 树 深度优先搜索 广度优先搜索 二叉树 👍 2684 👎 0
+// Related Topics 树 深度优先搜索 广度优先搜索 二叉树
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -58,8 +58,9 @@ class Solution {
     public boolean dfs(TreeNode l, TreeNode r) {
         if (l == null && r == null) return true;
         if (l == null || r == null) return false;
-        if(l.val != r.val) return false;
+        if (l.val != r.val) return false;
         return dfs(l.left, r.right) && dfs(l.right, r.left);
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

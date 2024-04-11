@@ -57,8 +57,8 @@ class Solution {
 
         int k = u + 1;
         while (k < nums.length && nums[k] == nums[u]) k++;
-
         int cnt = k - u;
+
         for (int i = 0; i <= cnt; i++) {
             dfs(nums, k);
             path.add(nums[u]);
@@ -67,6 +67,7 @@ class Solution {
         for (int i = 0; i <= cnt; i++) {
             path.remove(path.size() - 1);
         }
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

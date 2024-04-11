@@ -39,7 +39,7 @@
 //
 // 进阶：如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的 分治法 求解。 
 //
-// Related Topics 数组 分治 动态规划 👍 6603 👎 0
+// Related Topics 数组 分治 动态规划
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -47,8 +47,8 @@ class Solution {
     public int maxSubArray(int[] nums) {
         int res = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            nums[i] = Math.max(nums[i], nums[i - 1]+nums[i] );
-            res = Math.max(res, nums[i]);
+                nums[i] = Math.max(nums[i], nums[i] + nums[i-1]);
+                res  = Math.max(nums[i], res);
         }
         return res;
     }

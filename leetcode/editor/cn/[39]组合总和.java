@@ -67,7 +67,6 @@ class Solution {
             dfs(c, u + 1, target - i * c[u]);
             path.add(c[u]);
         }
-
         for (int i = 0; target - i * c[u] >= 0; i++) {
             path.remove(path.size() - 1);
         }

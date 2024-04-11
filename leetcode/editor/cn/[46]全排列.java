@@ -56,17 +56,15 @@ class Solution {
             ans.add(new ArrayList<>(path));
             return;
         }
-
         for (int i = 0; i < nums.length; i++) {
             if (!s[i]) {
-                path.add(nums[i]);
                 s[i] = true;
+                path.add(nums[i]);
                 dfs(nums, u + 1);
                 s[i] = false;
                 path.remove(path.size() - 1);
             }
         }
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

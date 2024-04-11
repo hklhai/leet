@@ -47,17 +47,7 @@ class Solution {
             return;
         }
 
-        for (int i = 0; i < nums.length; i++) {
-            if (!s[i]) {
-                if(i >0 && nums[i] == nums[i-1] && !s[i-1]) continue;
-
-                s[i] = true;
-                path.add(nums[i]);
-                dfs(nums,u+1);
-                s[i] = false;
-                path.remove(path.size()-1);
-            }
-        }
+       }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

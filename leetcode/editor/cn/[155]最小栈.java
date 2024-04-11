@@ -61,12 +61,17 @@ class MinStack {
 
     public void push(int val) {
         stack.push(val);
-        if (minStack.isEmpty() || val <= minStack.peek()) minStack.push(val);
+        if (minStack.isEmpty() || val <= minStack.peek()){
+            minStack.push(val);
+        }
     }
 
     public void pop() {
-        Integer val = stack.pop();
-        if (minStack.peek() >= val) minStack.pop();
+        int t = stack.pop();
+        if (t <= minStack.peek()) {
+            minStack.pop();
+        }
+
     }
 
     public int top() {

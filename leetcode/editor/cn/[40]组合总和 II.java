@@ -57,13 +57,13 @@ class Solution {
     }
 
     public void dfs(int[] c, int u, int target) {
-        if (u == c.length) {
-            if (0 == target) ans.add(new ArrayList<>(path));
+        if (c.length == u) {
+            if (target == 0) ans.add(new ArrayList<>(path));
             return;
         }
 
         int k = u + 1;
-        while (k < c.length && c[k] == c[u]) k++;
+        while (k < c.length && c[u] == c[k]) k++;
         int cnt = k - u;
 
         for (int i = 0; i <= cnt && target - i * c[u] >= 0; i++) {

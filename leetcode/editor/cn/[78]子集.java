@@ -45,7 +45,7 @@ class Solution {
     }
 
     public void dfs(int[] nums, int u) {
-        if(nums.length== u){
+        if (nums.length == u) {
             ans.add(new ArrayList<>(path));
             return;
         }
@@ -54,7 +54,7 @@ class Solution {
 
         path.add(nums[u]);
         dfs(nums, u + 1);
-        path.remove(path.size()-1);
+        path.remove(path.size() - 1);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
