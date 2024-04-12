@@ -37,7 +37,6 @@ class Solution {
         if (x < 2) return x;
         int l = 0, r = x;
         while (l < r) {
-            // mid * mid <= x
             int mid = (int) (l + r + 1L >> 1);
             if (mid <= x / mid) {
                 l = mid;
