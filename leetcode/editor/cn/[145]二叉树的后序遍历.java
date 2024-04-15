@@ -36,7 +36,7 @@
 //
 // 进阶：递归算法很简单，你可以通过迭代算法完成吗？ 
 //
-// Related Topics 栈 树 深度优先搜索 二叉树 👍 1166 👎 0
+// Related Topics 栈 树 深度优先搜索 二叉树
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -60,6 +60,7 @@ import java.util.ArrayList;
  */
 class Solution {
     List<Integer> ans = new ArrayList<>();
+
     public List<Integer> postorderTraversal(TreeNode root) {
         if (root == null) return ans;
         postorderTraversal(root.left);

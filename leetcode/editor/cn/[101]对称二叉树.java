@@ -58,9 +58,8 @@ class Solution {
     public boolean dfs(TreeNode l, TreeNode r) {
         if (l == null && r == null) return true;
         if (l == null || r == null) return false;
-        if (l.val != r.val) return false;
-        return dfs(l.left, r.right) && dfs(l.right, r.left);
+        if(l.val != r.val) return false;
+        return dfs(l.right, r.left) && dfs(l.left, r.right);
     }
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
