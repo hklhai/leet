@@ -58,20 +58,22 @@ class Solution {
     List<List<Integer>> ans = new ArrayList<>();
     List<Integer> path = new ArrayList<>();
 
-    public List<List<Integer>> combinationSum3(int k, int target) {
-        dfs(k, target, 1, 0);
+    public List<List<Integer>> combinationSum3(int k, int sum) {
+        dfs(1, 0, k, sum);
         return ans;
     }
 
-    public void dfs(int k, int target, int u, int cnt) {
+    public void dfs(int u, int cnt, int k, int sum) {
         if (k == cnt) {
-            if (target == 0) ans.add(new ArrayList<>(path));
+            if (sum == 0) {
+                ans.add(new ArrayList<>(path));
+            }
             return;
         }
 
         for (int i = u; i <= 9; i++) {
             path.add(i);
-            dfs(k, target - i, i + 1, cnt + 1);
+            dfs(i + 1, cnt + 1, k, sum - i);
             path.remove(path.size() - 1);
         }
     }

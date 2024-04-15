@@ -33,6 +33,7 @@
 // nums 中的所有整数 互不相同 
 // 
 //
+// Related Topics 数组 回溯
 
 
 import java.util.ArrayList;
@@ -44,8 +45,6 @@ class Solution {
     boolean[] s;
 
     public List<List<Integer>> permute(int[] nums) {
-        if (nums == null || nums.length == 0) return ans;
-
         s = new boolean[nums.length];
         dfs(nums, 0);
         return ans;
@@ -56,15 +55,17 @@ class Solution {
             ans.add(new ArrayList<>(path));
             return;
         }
+
         for (int i = 0; i < nums.length; i++) {
             if (!s[i]) {
                 s[i] = true;
                 path.add(nums[i]);
                 dfs(nums, u + 1);
-                s[i] = false;
                 path.remove(path.size() - 1);
+                s[i] = false;
             }
         }
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
