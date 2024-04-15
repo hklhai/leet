@@ -43,7 +43,6 @@ class Solution {
     List<Integer> path = new ArrayList<>();
 
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        if (nums == null || nums.length == 0) return ans;
         Arrays.sort(nums);
         dfs(nums, 0);
         return ans;
@@ -67,7 +66,6 @@ class Solution {
         for (int i = 0; i <= cnt; i++) {
             path.remove(path.size() - 1);
         }
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

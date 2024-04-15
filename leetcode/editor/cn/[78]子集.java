@@ -39,7 +39,6 @@ class Solution {
     List<Integer> path = new ArrayList<>();
 
     public List<List<Integer>> subsets(int[] nums) {
-        if (nums == null || nums.length == 0) return ans;
         dfs(nums, 0);
         return ans;
     }
@@ -50,11 +49,14 @@ class Solution {
             return;
         }
 
-        dfs(nums, u + 1);
+        for (int i = 0; i <= 1; i++) {
+            dfs(nums, u+1);
+            path.add(nums[u]);
+        }
 
-        path.add(nums[u]);
-        dfs(nums, u + 1);
-        path.remove(path.size() - 1);
+        for (int i = 0; i <= 1; i++) {
+            path.remove(path.size() - 1);
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
