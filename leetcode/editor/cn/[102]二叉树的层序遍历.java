@@ -32,6 +32,7 @@
 // -1000 <= Node.val <= 1000 
 // 
 //
+// Related Topics 树 广度优先搜索 二叉树
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -56,18 +57,17 @@ import java.util.Queue;
  * }
  */
 class Solution {
-
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         if (root == null) return ans;
 
         Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
+        q.add(root);
 
         while (q.size() > 0) {
+            int len = q.size();
             List<Integer> list = new ArrayList<>();
-            int n = q.size();
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < len; i++) {
                 TreeNode t = q.poll();
                 list.add(t.val);
                 if (t.left != null) q.offer(t.left);

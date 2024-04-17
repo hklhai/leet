@@ -40,7 +40,7 @@
 // p 和 q 均存在于给定的二叉树中。 
 // 
 //
-// Related Topics 树 深度优先搜索 二叉树 👍 2642 👎 0
+// Related Topics 树 深度优先搜索 二叉树
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -56,13 +56,14 @@
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) return null;
-        if (p == root || q == root) return root;
+        if (root == null) return root;
+        if (root == p || root == q) return root;
+
         TreeNode l = lowestCommonAncestor(root.left, p, q);
         TreeNode r = lowestCommonAncestor(root.right, p, q);
         if (l == null) return r;
         if (r == null) return l;
-        return root;
+        return null;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
