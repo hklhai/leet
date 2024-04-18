@@ -43,16 +43,15 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
     List<List<Integer>> ans = new ArrayList<>();
     List<Integer> path = new ArrayList<>();
 
     public List<List<Integer>> combinationSum2(int[] c, int target) {
         Arrays.sort(c);
-
         dfs(c, 0, target);
         return ans;
     }
@@ -67,12 +66,14 @@ class Solution {
         while (k < c.length && c[k] == c[u]) k++;
         int cnt = k - u;
 
-        for (int i = 0; i <= cnt && target - i * c[u] >= 0; i++) {
+
+        for (int i = 0; target - i * c[u] >= 0 && i <= cnt; i++) {
             dfs(c, k, target - i * c[u]);
             path.add(c[u]);
         }
-        for (int i = 0; i <= cnt && target - i * c[u] >= 0; i++) {
-            path.remove(path.size() - 1);
+
+        for (int i = 0; target - i * c[u] >= 0 && i <= cnt; i++) {
+            path.remove(path.size()-1);
         }
     }
 }
