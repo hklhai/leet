@@ -49,14 +49,11 @@ class Solution {
             return;
         }
 
-        for (int i = 0; i <= 1; i++) {
-            dfs(nums, u+1);
-            path.add(nums[u]);
-        }
+        dfs(nums, u + 1);
 
-        for (int i = 0; i <= 1; i++) {
-            path.remove(path.size() - 1);
-        }
+        path.add(nums[u]);
+        dfs(nums, u + 1);
+        path.remove(path.size() - 1);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
