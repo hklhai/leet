@@ -63,16 +63,17 @@ class Solution {
 
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
+
         while (q.size() > 0) {
             int len = q.size();
-            List<Integer> l = new ArrayList<>();
+            List<Integer> list = new ArrayList<>();
             for (int i = 0; i < len; i++) {
                 TreeNode t = q.poll();
-                l.add(t.val);
+                list.add(t.val);
                 if (t.left != null) q.offer(t.left);
                 if (t.right != null) q.offer(t.right);
             }
-            ans.add(l);
+            ans.add(list);
         }
         return ans;
     }

@@ -55,25 +55,7 @@
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        if (head == null) return null;
-        if (n == 0) return head;
-        ListNode d = new ListNode(-1);
-        d.next = head;
 
-        ListNode p = d;
-        ListNode q = d;
-
-        while (n > 0) {
-            p = p.next;
-            n--;
-        }
-
-        while (p.next != null) {
-            p = p.next;
-            q = q.next;
-        }
-        q.next =q.next.next;
-        return d.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

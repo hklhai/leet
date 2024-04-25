@@ -63,10 +63,16 @@ class Solution {
 
     public List<Integer> postorderTraversal(TreeNode root) {
         if (root == null) return ans;
-        postorderTraversal(root.left);
-        postorderTraversal(root.right);
-        ans.add(root.val);
+
+        dfs(root);
         return ans;
+    }
+
+    public void dfs(TreeNode root) {
+        if (root == null) return;
+        dfs(root.left);
+        dfs(root.right);
+        ans.add(root.val);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

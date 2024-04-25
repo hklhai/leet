@@ -28,6 +28,7 @@
 //
 // Related Topics 链表 双指针
 
+
 //leetcode submit region begin(Prohibit modification and deletion)
 
 /**
@@ -42,11 +43,12 @@
  */
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null || head.next == null) return head;
-        if (k == 0) return head;
+        if (head == null || head.next == null || k == 0) {
+            return head;
+        }
 
-        int len = 0;
         ListNode p = head;
+        int len = 0;
         while (p != null) {
             len++;
             p = p.next;
@@ -56,23 +58,23 @@ class Solution {
         if (k == 0) return head;
 
         ListNode f = head;
+        ListNode s = head;
+        // [1,2,3,4,5], k = 2  -> [4,5,1,2,3]
         while (k > 0) {
             f = f.next;
             k--;
         }
 
-        // h   s  s.next  f
-        ListNode s = head;
         while (f.next != null) {
             f = f.next;
             s = s.next;
         }
+
         ListNode newHead = s.next;
-        f.next = head;
         s.next = null;
+        f.next = head;
 
         return newHead;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
