@@ -54,27 +54,31 @@ import java.util.HashMap;
  * }
  */
 class Solution {
+
     Map<Integer, Integer> dict = new HashMap<>();
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         int n = preorder.length;
+
         for (int i = 0; i < n; i++) {
             dict.put(inorder[i], i);
         }
-
         return dfs(preorder, inorder, 0, n - 1, 0, n - 1);
     }
 
     public TreeNode dfs(int[] preorder, int[] inorder, int pl, int pr, int il, int ir) {
         if (pl > pr) return null;
         int val = preorder[pl];
-        TreeNode root = new TreeNode(val);
+        TreeNode r = new TreeNode(val);
+        // preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
         int pos = dict.get(val);
         int len = pos - il;
-        // preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
-        root.left = dfs(preorder, inorder, pl + 1, pl + len, il, pos);
-        root.right = dfs(preorder, inorder, pl + len + 1, pr, pos + 1, ir);
-        return root;
+
+        r.left = dfs(preorder, inorder, pl + 1, pl + len, il, pos);
+        r.right = dfs(preorder, inorder, pl + len + 1, pr, pos + 1, ir);
+        return r;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+
+
