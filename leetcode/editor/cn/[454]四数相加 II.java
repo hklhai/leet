@@ -40,27 +40,31 @@
 // -2²⁸ <= nums1[i], nums2[i], nums3[i], nums4[i] <= 2²⁸ 
 // 
 //
+// Related Topics 数组 哈希表
 
 
 import java.util.HashMap;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
-        Map<Integer, Integer> m = new HashMap<>();
-
-        for (int a : A) {
-            for (int b : B) {
-                m.put(a + b, m.getOrDefault(a + b, 0) + 1);
+    public int fourSumCount(int[] a, int[] b, int[] c, int[] d) {
+        int n = a.length;
+        Map<Integer, Integer> dict = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                int sum = a[i] + b[j];
+                dict.put(sum, dict.getOrDefault(sum, 0) + 1);
             }
         }
 
         int res = 0;
-        for (int c : C) {
-            for (int d : D) {
-                res += m.getOrDefault(-(c + d), 0);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                int sum = c[i] + d[j];
+                res += dict.getOrDefault(-sum, 0);
             }
         }
+
         return res;
     }
 }
