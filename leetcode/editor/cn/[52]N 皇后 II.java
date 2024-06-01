@@ -41,35 +41,33 @@ class Solution {
     List<List<String>> ans = new ArrayList<>();
     List<String> path = new ArrayList<>();
     boolean[] col, a, b;
-
     public int totalNQueens(int n) {
-        col = new boolean[n];
-        a = new boolean[2 * n];
-        b = new boolean[2 * n];
         for (int i = 0; i < n; i++) {
             path.add(".".repeat(n));
         }
+        col = new boolean[n];
+        a = new boolean[n * 2];
+        b = new boolean[n * 2];
+
         dfs(0, n);
         return ans.size();
     }
 
     public void dfs(int u, int n) {
-        if (u == n) {
+        if (n == u) {
             ans.add(new ArrayList<>(path));
             return;
         }
 
         for (int i = 0; i < n; i++) {
-            if (!col[i] && !a[u + i] && !b[u - i + n]) {
-                col[i] = a[u + i] = b[u - i + n] = true;
+            if (!col[i] && !a[i + u] && !b[i - u + n]) {
+                col[i] = a[i + u] = b[i - u + n] = true;
                 path.set(u, path.get(u).substring(0, i) + "Q" + path.get(u).substring(i + 1));
                 dfs(u + 1, n);
-                col[i] = a[u + i] = b[u - i + n] = false;
+                col[i] = a[i + u] = b[i - u + n] = false;
                 path.set(u, path.get(u).substring(0, i) + "." + path.get(u).substring(i + 1));
             }
         }
     }
-
-
 }
 //leetcode submit region end(Prohibit modification and deletion)

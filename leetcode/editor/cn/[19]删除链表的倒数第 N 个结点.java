@@ -38,7 +38,7 @@
 //
 // 进阶：你能尝试使用一趟扫描实现吗？ 
 //
-// Related Topics 链表 双指针
+// Related Topics 链表 双指针 👍 2867 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -55,7 +55,23 @@
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode d = new ListNode(-1);
+        d.next = head;
 
+        ListNode f = d;
+        while (n > 0) {
+            f = f.next;
+            n--;
+        }
+
+        ListNode s = d;
+        // [1,2,3,4,5] -> [1,2,3,5]
+        while(f.next!=null){
+            f = f.next;
+            s = s.next;
+        }
+        s.next = s.next.next;
+        return d.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
