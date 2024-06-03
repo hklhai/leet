@@ -51,7 +51,7 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        if (head == null) return head;
+        if (head == null || head.next == null) return head;
 
         ListNode a = head;
         ListNode b = a.next;
