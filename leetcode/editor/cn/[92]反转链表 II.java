@@ -49,29 +49,27 @@
  */
 class Solution {
     public ListNode reverseBetween(ListNode head, int l, int r) {
-        if (head == null) return head;
-        if (l == r) return head;
+        //  1,2,3,4,5], left = 2, right = 4  - > [1,4,3,2,5]
+        if (head == null || l == r) return head;
 
         ListNode d = new ListNode(-1);
         d.next = head;
-        ListNode p = d;
-        ListNode q = d;
 
+        ListNode x = d;
         while (l - 1 > 0) {
-            p = p.next;
             l--;
+            x = x.next;
         }
+        ListNode m = x.next;
 
+        ListNode n = d;
         while (r > 0) {
-            q = q.next;
             r--;
+            n = n.next;
         }
+        ListNode y = n.next;
 
-        ListNode x = p;
-        ListNode m = p.next;
-        ListNode n = q;
-        ListNode y = q.next;
-        // x    m n    y
+        // x m n y
         ListNode a = m;
         ListNode b = a.next;
         while (b != y) {
@@ -81,9 +79,9 @@ class Solution {
             b = c;
         }
 
-        // x    m n    y
         x.next = a;
         m.next = y;
+
         return d.next;
     }
 }
