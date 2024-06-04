@@ -26,7 +26,7 @@
 // 0 <= k <= 2 * 10⁹ 
 // 
 //
-// Related Topics 链表 双指针
+// Related Topics 链表 双指针 👍 1053 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -43,37 +43,33 @@
  */
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null || head.next == null || k == 0) {
-            return head;
-        }
+        if (head == null || k == 0) return head;
 
         ListNode p = head;
         int len = 0;
         while (p != null) {
-            len++;
             p = p.next;
+            len++;
         }
-
         k %= len;
         if (k == 0) return head;
 
         ListNode f = head;
         ListNode s = head;
-        // [1,2,3,4,5], k = 2  -> [4,5,1,2,3]
         while (k > 0) {
             f = f.next;
             k--;
         }
-
         while (f.next != null) {
             f = f.next;
             s = s.next;
         }
+        // head = [1,2,3,4,5], k = 2  -> 输出：[4,5,1,2,3]
+        // head s  s.next   f
 
         ListNode newHead = s.next;
         s.next = null;
         f.next = head;
-
         return newHead;
     }
 }
