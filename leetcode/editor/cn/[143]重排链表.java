@@ -38,12 +38,10 @@
 // 1 <= node.val <= 1000 
 // 
 //
-// Related Topics 栈 递归 链表 双指针
+// Related Topics 栈 递归 链表 双指针 👍 1476 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-
-import java.util.List;
 
 /**
  * Definition for singly-linked list.
@@ -58,20 +56,22 @@ import java.util.List;
 class Solution {
     public void reorderList(ListNode head) {
         if (head == null || head.next == null) return;
-
+        // 输入：head = [1,2,3,4,5] 输出：[1,5,2,4,3]
         ListNode f = head;
         ListNode s = head;
+
         while (f.next != null && f.next.next != null) {
             f = f.next.next;
             s = s.next;
         }
 
-        // 反转从中间到末尾的链表部分
-        ListNode a = s.next; // 第一个需要反转的节点
-        s.next = null; // 断开前半部分和后半部分的连接
+        // head  s s.next   f
+        ListNode a = s.next;
+        s.next = null;
 
         ListNode b = a.next;
-        a.next = null; // 第一个节点反转后将成为最后一个节点
+        a.next = null;
+
         while (b != null) {
             ListNode c = b.next;
             b.next = a;
@@ -79,8 +79,7 @@ class Solution {
             b = c;
         }
 
-
-        // head   a
+        // head    ; a
         ListNode first = head;
         ListNode second = a;
         while (first != null && second != null) {
