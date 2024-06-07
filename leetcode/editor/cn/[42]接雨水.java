@@ -32,23 +32,27 @@
 // Related Topics 栈 数组 双指针 动态规划 单调栈
 
 
+import java.util.Stack;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int trap(int[] height) {
-        Stack<Integer> stk = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
         int res = 0;
 
         for (int i = 0; i < height.length; i++) {
             int last = 0;
-            while (!stk.isEmpty() && height[stk.peek()] <= height[i]) {
-                res += (height[stk.peek()] - last) * (i - stk.peek() - 1);
-                last = height[stk.peek()];
-                stk.pop();
+            while (!stack.isEmpty() && height[stack.peek()] <= height[i]) {
+                res += (i - stack.peek() - 1) * (height[stack.peek()] - last);
+                last = height[stack.peek()];
+                stack.pop();
             }
-            if (!stk.isEmpty()) {
-                res += (i - stk.peek() - 1) * (height[i] - last);
+
+            if (!stack.isEmpty()) {
+                res += (i - stack.peek() - 1) * (height[i] - last);
             }
-            stk.push(i);
+
+            stack.push(i);
         }
 
         return res;
